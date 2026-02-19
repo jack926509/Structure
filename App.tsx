@@ -93,7 +93,6 @@ const App = () => {
           {renderContent()}
 
           {/* Global Footer Notes */}
-          {/* Global Footer Notes */}
           <footer className="mt-4 md:mt-12 p-5 md:p-10 bg-slate-900 rounded-[2rem] text-white shadow-xl shadow-slate-300 relative overflow-hidden group mx-0.5">
             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-1000 rotate-12 pointer-events-none">
               <MousePointer2 size={200} />

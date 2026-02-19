@@ -48,8 +48,8 @@ export const PatternsView = () => {
                         </div>
                     </div>
                     <div className="space-y-4 md:space-y-6 pb-20 md:pb-0">
-                        {PATTERNS.bullish.map((p, idx) => (
-                            <SentimentCard key={idx} {...p} type="bullish" />
+                        {PATTERNS.bullish.map((p) => (
+                            <SentimentCard key={p.title} {...p} type="bullish" />
                         ))}
                     </div>
                 </div>
@@ -71,8 +71,8 @@ export const PatternsView = () => {
                         </div>
                     </div>
                     <div className="space-y-4 md:space-y-6 pb-20 md:pb-0">
-                        {PATTERNS.bearish.map((p, idx) => (
-                            <SentimentCard key={idx} {...p} type="bearish" />
+                        {PATTERNS.bearish.map((p) => (
+                            <SentimentCard key={p.title} {...p} type="bearish" />
                         ))}
                     </div>
                 </div>
