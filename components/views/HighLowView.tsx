@@ -39,12 +39,12 @@ export const HighLowView = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 relative z-10">
-                    {HIGH_LOW_CARDS.map((card, idx) => {
+                    {HIGH_LOW_CARDS.map((card) => {
                         const Icon = ICON_MAP[card.iconName] || Activity;
                         const theme = THEME_STYLES[card.colorTheme] || THEME_STYLES.indigo;
 
                         return (
-                            <div key={idx} className={`p-6 rounded-[1.5rem] border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm ${theme.bg} ${theme.border} bg-opacity-70 hover:bg-opacity-90`}>
+                            <div key={card.title} className={`p-6 rounded-[1.5rem] border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl backdrop-blur-sm ${theme.bg} ${theme.border} bg-opacity-70 hover:bg-opacity-90`}>
                                 <div className="flex items-center gap-4 mb-5">
                                     <div className={`p-2.5 rounded-2xl ${theme.iconBg} shadow-sm`}>
                                         <Icon size={22} strokeWidth={2.5} />
@@ -52,8 +52,8 @@ export const HighLowView = () => {
                                     <h4 className={`font-black text-lg ${theme.text}`}>{card.title}</h4>
                                 </div>
                                 <ul className="space-y-3.5">
-                                    {card.items.map((item, i) => (
-                                        <li key={i} className={`flex items-start gap-3 text-[15px] font-bold ${card.colorTheme === 'slate' ? 'text-slate-300' : 'text-slate-600'}`}>
+                                    {card.items.map((item) => (
+                                        <li key={item} className={`flex items-start gap-3 text-[15px] font-bold ${card.colorTheme === 'slate' ? 'text-slate-300' : 'text-slate-600'}`}>
                                             <span className={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${card.colorTheme === 'slate' ? 'bg-slate-500' : 'bg-slate-400'}`}></span>
                                             <span className="leading-snug">{item}</span>
                                         </li>

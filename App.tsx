@@ -14,28 +14,22 @@ const NAV_ITEMS = [
 
 type TabType = typeof NAV_ITEMS[number]['id'];
 
+const TAB_VIEWS: Record<TabType, React.ReactElement> = {
+  patterns: <PatternsView />,
+  principles: <PrinciplesView />,
+  extraction: <ExtractionView />,
+  highlow: <HighLowView />,
+};
+
 const App = () => {
   const [activeTab, setActiveTab] = useState<TabType>('patterns');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect for header
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'patterns': return <PatternsView />;
-      case 'principles': return <PrinciplesView />;
-      case 'extraction': return <ExtractionView />;
-      case 'highlow': return <HighLowView />;
-      default: return <PatternsView />;
-    }
-  };
 
   return (
     <div className="min-h-screen text-slate-900 pb-28 md:pb-12">
@@ -90,7 +84,7 @@ const App = () => {
 
         {/* Content Area */}
         <main className="min-h-[60vh]">
-          {renderContent()}
+          {TAB_VIEWS[activeTab]}
 
           {/* Global Footer Notes */}
           <footer className="mt-4 md:mt-12 p-5 md:p-10 bg-slate-900 rounded-[2rem] text-white shadow-xl shadow-slate-300 relative overflow-hidden group mx-0.5">
