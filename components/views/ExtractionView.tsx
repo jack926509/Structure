@@ -15,8 +15,8 @@ export const ExtractionView = () => {
                                 <span className="font-black text-slate-800 text-lg tracking-tight font-outfit">KL 繪製角度</span>
                             </div>
                             <div className="space-y-3 relative z-10">
-                                {EXTRACTION_TIPS.klDrawing.map((tip, idx) => (
-                                    <div key={idx} className="bg-white/80 p-4 rounded-2xl border border-white/40 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm">
+                                {EXTRACTION_TIPS.klDrawing.map((tip) => (
+                                    <div key={tip.title} className="bg-white/80 p-4 rounded-2xl border border-white/40 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm">
                                         <p className={`text-[10px] font-black mb-1 uppercase tracking-widest ${tip.colorClass}`}>{tip.title}</p>
                                         <p className="text-sm font-bold text-slate-700">{tip.desc}</p>
                                     </div>
@@ -27,8 +27,8 @@ export const ExtractionView = () => {
                         <div className="bg-slate-50/50 p-5 rounded-3xl border border-slate-200/50">
                             <p className="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.2em]">Wave Count Rules</p>
                             <ul className="text-sm space-y-4 font-bold text-slate-700">
-                                {EXTRACTION_TIPS.wavePrinciples.map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3">
+                                {EXTRACTION_TIPS.wavePrinciples.map((item) => (
+                                    <li key={item.text} className="flex items-start gap-3">
                                         <div className={`w-2 h-2 rounded-full mt-2 shrink-0 ${item.highlight ? 'bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.6)]' : 'bg-slate-300'}`}></div>
                                         <span className={`leading-relaxed ${item.highlight ? 'text-indigo-700' : ''}`}>{item.text}</span>
                                     </li>

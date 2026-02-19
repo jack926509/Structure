@@ -1,5 +1,4 @@
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
 
 interface StepCardProps {
   number: string;
@@ -11,7 +10,7 @@ interface StepCardProps {
 
 export const StepCard: React.FC<StepCardProps> = ({ number, title, content, icon: Icon, colorClass }) => (
   <div className="glass p-5 md:p-6 rounded-[1.5rem] shadow-sm hover:shadow-xl transition-all duration-500 relative overflow-hidden group h-full hover:-translate-y-1">
-    <div className={`absolute -right-8 -top-8 w-32 h-32 opacity-[0.03] group-hover:opacity-10 transition-all duration-500 ${colorClass.replace('bg-', 'bg-text-')} rounded-full transform group-hover:scale-125`}></div>
+    <div className={`absolute -right-8 -top-8 w-32 h-32 opacity-[0.03] group-hover:opacity-10 transition-all duration-500 ${colorClass} rounded-full transform group-hover:scale-125`}></div>
     <div className={`absolute right-5 top-5 opacity-20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12 ${colorClass.replace('bg-', 'text-')}`}>
       <Icon size={48} strokeWidth={1.5} />
     </div>

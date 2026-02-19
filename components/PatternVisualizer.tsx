@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { PatternVisualData } from '../types';
-import { PlayCircle, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 
 interface PatternVisualizerProps {
   data: PatternVisualData;
@@ -17,16 +17,16 @@ export const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ data, isBu
     return () => clearTimeout(timer);
   }, [key]);
 
-  const replay = (e: React.MouseEvent) => {
+  const replay = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setIsVisible(false);
     setKey(prev => prev + 1);
-  };
+  }, []);
 
-  const toPath = (points: { x: number, y: number }[]) => {
+  const toPath = useCallback((points: { x: number, y: number }[]) => {
     if (points.length === 0) return '';
     return `M ${points[0].x} ${points[0].y} ` + points.slice(1).map(p => `L ${p.x} ${p.y}`).join(' ');
-  };
+  }, []);
 
   const themeColor = isBullish ? '#10b981' : '#f43f5e'; // emerald-500 : rose-500
 
@@ -36,6 +36,7 @@ export const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ data, isBu
         <button
           onClick={replay}
           className="p-1.5 rounded-full bg-white text-slate-500 shadow-sm hover:text-indigo-600 border border-slate-200 transition-colors"
+          aria-label="重播動畫"
           title="Replay Animation"
         >
           <RefreshCw size={14} />
@@ -109,27 +110,6 @@ export const PatternVisualizer: React.FC<PatternVisualizerProps> = ({ data, isBu
         </svg>
       </div>
 
-      <style>{`
-        .animate-draw-path {
-          stroke-dasharray: 300;
-          stroke-dashoffset: 300;
-          animation: draw 2s ease-out forwards;
-        }
-        .animate-fade-in-delayed {
-          opacity: 0;
-          animation: fadeIn 0.5s ease-out 1.5s forwards;
-        }
-        @keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-        @keyframes fadeIn {
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
   );
 };
