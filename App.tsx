@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Layers, Compass, Activity, Zap, MousePointer2 } from 'lucide-react';
+import { Search, Layers, Compass, Activity, Zap, MousePointer2, Cloud } from 'lucide-react';
 import { PatternsView } from './components/views/PatternsView';
 import { PrinciplesView } from './components/views/PrinciplesView';
 import { ExtractionView } from './components/views/ExtractionView';
 import { HighLowView } from './components/views/HighLowView';
+import { DriveView } from './components/views/DriveView';
 
 const NAV_ITEMS = [
   { id: 'patterns', label: '型態', icon: Search },
   { id: 'principles', label: '五步驟', icon: Layers },
   { id: 'extraction', label: '萃取', icon: Compass },
   { id: 'highlow', label: '高低點', icon: Activity },
+  { id: 'drive', label: '雲端', icon: Cloud },
 ] as const;
 
 type TabType = typeof NAV_ITEMS[number]['id'];
@@ -19,6 +21,7 @@ const TAB_VIEWS: Record<TabType, React.ReactElement> = {
   principles: <PrinciplesView />,
   extraction: <ExtractionView />,
   highlow: <HighLowView />,
+  drive: <DriveView />,
 };
 
 const App = () => {
