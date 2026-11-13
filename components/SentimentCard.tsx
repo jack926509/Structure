@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TrendingUp, TrendingDown, AlertCircle, Eye, ChevronDown, ChevronUp } from 'lucide-react';
+import { TrendingUp, TrendingDown, AlertCircle, Eye, ChevronUp } from 'lucide-react';
 import { SentimentType, PatternVisualData } from '../types';
 import { PatternVisualizer } from './PatternVisualizer';
 
@@ -47,6 +47,8 @@ export const SentimentCard: React.FC<SentimentCardProps> = ({ title, sentiment, 
 
         {visualData && (
           <button
+            aria-expanded={showVisual}
+            aria-label={`${title}：${showVisual ? '收起演示' : '圖解演示'}`}
             onClick={() => setShowVisual(!showVisual)}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all shrink-0 border ${showVisual
                 ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-500/30'
