@@ -140,7 +140,7 @@ const App = () => {
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
-                aria-current={activeTab === item.id ? 'page' : undefined}
+              aria-current={activeTab === item.id ? 'page' : undefined}
               onClick={() => {
                 setActiveTab(item.id);
                 window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });

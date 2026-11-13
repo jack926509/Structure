@@ -13,9 +13,12 @@ describe('教學資料完整性', () => {
         if (!pattern.visualData) continue;
         expect(pattern.visualData.points.length).toBeGreaterThan(1);
         const data = pattern.visualData;
-        const points = [...data.points, ...(data.supportLines ?? []).flat(),
+        const points = [
+          ...data.points,
+          ...(data.supportLines ?? []).flat(),
           ...(data.resistanceLines ?? []).flat(),
-          ...[data.entryPoint, data.stopLossPoint].filter(p => p !== undefined)];
+          ...[data.entryPoint, data.stopLossPoint].filter(p => p !== undefined),
+        ];
         for (const point of points) {
           expect(Number.isFinite(point.x) && Number.isFinite(point.y)).toBe(true);
         }
