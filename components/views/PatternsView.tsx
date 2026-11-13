@@ -11,6 +11,7 @@ export const PatternsView = () => {
             {/* Mobile Toggle for Patterns */}
             <div className="md:hidden flex p-1.5 glass rounded-2xl mx-auto w-full max-w-xs sticky top-20 z-30 shadow-sm shadow-indigo-500/5">
                 <button
+                    aria-pressed={mobilePatternFilter === 'bullish'}
                     onClick={() => setMobilePatternFilter('bullish')}
                     className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${mobilePatternFilter === 'bullish'
                         ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 ring-1 ring-emerald-400'
@@ -20,6 +21,7 @@ export const PatternsView = () => {
                     <ArrowUpCircle size={18} strokeWidth={2.5} /> 多頭型態
                 </button>
                 <button
+                    aria-pressed={mobilePatternFilter === 'bearish'}
                     onClick={() => setMobilePatternFilter('bearish')}
                     className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${mobilePatternFilter === 'bearish'
                         ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30 ring-1 ring-rose-400'

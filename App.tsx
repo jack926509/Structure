@@ -27,7 +27,8 @@ const App = () => {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -65,10 +66,11 @@ const App = () => {
             </div>
           </div>
 
-          <nav className="flex flex-wrap justify-center bg-slate-100/50 p-1.5 rounded-2xl border border-slate-200/60 gap-1">
+          <nav aria-label="主要導覽" className="flex flex-wrap justify-center bg-slate-100/50 p-1.5 rounded-2xl border border-slate-200/60 gap-1">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
+                aria-current={activeTab === item.id ? 'page' : undefined}
                 onClick={() => setActiveTab(item.id)}
                 className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center gap-2.5 ${activeTab === item.id
                   ? 'bg-white text-indigo-600 shadow-md ring-1 ring-slate-100 scale-100'
@@ -133,14 +135,15 @@ const App = () => {
       </div>
 
       {/* Mobile Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 w-full glass border-t border-slate-200/50 md:hidden z-50 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+      <nav aria-label="行動版導覽" className="fixed bottom-0 left-0 w-full glass border-t border-slate-200/50 md:hidden z-50 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
         <div className="flex justify-around items-center px-4 py-3">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
+                aria-current={activeTab === item.id ? 'page' : undefined}
               onClick={() => {
                 setActiveTab(item.id);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
               }}
               className={`flex flex-col items-center justify-center p-2 rounded-2xl transition-all w-full gap-1.5 ${activeTab === item.id
                 ? 'text-indigo-600 bg-indigo-50/80 scale-105'
@@ -152,7 +155,7 @@ const App = () => {
             </button>
           ))}
         </div>
-      </div>
+      </nav>
     </div>
   );
 };
